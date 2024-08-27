@@ -199,13 +199,13 @@ body {
     }
 
     /* Adjust content padding on smaller screens */
+
     .content-top,
     .content-middle,
     .footer,
     .navbar {
-        padding: 5% 5%; /* Reduce padding for smaller screens */
-        margin: 0; /* Remove margins on smaller screens */
-    }
+        margin: 0; 
+    } 
 
     .content-top h2,
     .content-middle h2 {
@@ -219,10 +219,20 @@ body {
     }
 
     #home{
-        margin-top: 30%;
+        margin-top: 20%;
+        padding-top:9%;
     }
-
+    
     #toTop {
         right: 10px;
+    }
+
+    .footer {
+        padding-bottom: 100%;
+    }
+
+    .company_address{
+        text-align: center;
+        padding-top: 10%;
     }
 }
