@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    if (window.innerWidth <= 768) {
+        $(".contact-form").hide();
+    }
+    else{
+        $(".contact-form").show();
+    }
+
     // Scroll-to-Top Button
     var toTopButton = document.getElementById('toTop');
 
@@ -12,10 +20,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     toTopButton.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent default anchor click behavior
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        var targetElement = document.querySelector('#home');
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - document.querySelector('.navbar').offsetHeight,
+                behavior: 'smooth'
+            });
+        }
+    });
+
+    var logoImage = document.querySelector('.navbar-brand');
+    logoImage.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default anchor click behavior
+        var targetElement = document.querySelector('#home');
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - document.querySelector('.navbar').offsetHeight,
+                behavior: 'smooth'
+            });
+        }
     });
 
     // Smooth Scroll for Navbar Links
@@ -26,19 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             var targetId = this.getAttribute('href');
             var targetElement = document.querySelector(targetId);
-            
+
+            var collapsedHeight = 0;
+            var navbarToggler = document.querySelector('.navbar-toggler');
+            var navbarCollapse = document.querySelector('.navbar-collapse');
+            if (window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
+                collapsedHeight = document.querySelector('#navbarNav').offsetHeight;
+            }
+
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - document.querySelector('.navbar').offsetHeight,
+                    top: targetElement.offsetTop - document.querySelector('.navbar').offsetHeight + collapsedHeight,
                     behavior: 'smooth'
                 });
             }
 
-            // Auto-close mobile menu after click
-            var navbarToggler = document.querySelector('.navbar-toggler');
-            var navbarCollapse = document.querySelector('.navbar-collapse');
-            if (window.innerWidth <= 768 && navbarCollapse.classList.contains('show')) {
-                navbarToggler.click(); // Simulate a click to close the menu
+            if(collapsedHeight > 0) {
+                navbarToggler.click();
             }
         });
     });
