@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     if (window.innerWidth <= 768) {
-        $(".contact-form").hide();
+        $(".contact-map").hide();
     }
     else{
-        $(".contact-form").show();
+        $(".contact-map").show();
     }
 
     // Scroll-to-Top Button
