@@ -109,29 +109,6 @@ body {
     padding-bottom: 10%;
 }
 
-.contact-form{
-	position:relative;
-	padding-bottom:30px;
-}
-.contact-form div{
-	padding:5px 0 15px;
-}
-.contact-form input[type="text"],.contact-form textarea{
-	padding: 12px;
-	display: block;
-	width: 95%;
-	background:#EF9C83;
-	border: solid #303441 3px;
-	border-radius: 10px;
-	outline: none;
-	color:black;
-	font-size: 0.9em;
-}
-.contact-form textarea{
-	resize:none;
-	height:120px;		
-}
-
 .btn-8 {
 	display: block;
 	background: #EF9C83;
