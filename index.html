@@ -1,129 +1,382 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adeptix AI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistry and Associates Building Service Design</title>
+    <meta name="description" content="Practical, experienced, and proactive engineering teams.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            DEFAULT: '#FFFDD0',
+                            50: '#fffeeb',
+                            100: '#fffdd0',
+                            200: '#fffab3',
+                            300: '#fff585',
+                            900: '#4d4b1a',
+                        },
+                        stone: {
+                            850: '#1c1917', // Darker stone for footers
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand scroll" href="#home">
-            <img src="images/logoai.png" alt="Logo"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link scroll" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link scroll" href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link scroll" href="#contact">Contact</a>
-                </li>
-            </ul>
+<body class="font-sans text-gray-800 bg-stone-50 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-cream-100 rounded-full flex items-center justify-center mr-2 border border-stone-200">
+                        <span class="font-bold text-stone-800 text-lg">M</span>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-stone-900">Mistry <span class="font-light text-stone-500">& Associates</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#about" class="text-stone-600 hover:text-black hover:bg-cream-50 px-3 py-2 rounded-md text-sm font-medium transition-colors">About Us</a>
+                    <a href="#sectors" class="text-stone-600 hover:text-black hover:bg-cream-50 px-3 py-2 rounded-md text-sm font-medium transition-colors">Sectors</a>
+                    <a href="#team" class="text-stone-600 hover:text-black hover:bg-cream-50 px-3 py-2 rounded-md text-sm font-medium transition-colors">Team</a>
+                    <a href="#contact" class="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-stone-800 transition-colors">Contact</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-stone-600 hover:text-black focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div class="hidden md:hidden bg-white border-t border-stone-100" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-black hover:bg-cream-50">About Us</a>
+                <a href="#sectors" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-black hover:bg-cream-50">Sectors</a>
+                <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-black hover:bg-cream-50">Team</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:text-black hover:bg-cream-50">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="content-top section">
-        <div class="container">
-            <h2>Adeptix AI</h2>
-            <p>
-                Adeptix AI is a forward-thinking technology company specializing in artificial intelligence solutions. Our mission is to empower businesses with innovative, AI-driven tools that enhance operational efficiency, drive growth, and facilitate intelligent decision-making. Whether you're looking to integrate AI into your current operations, develop intelligent software, or create data-driven strategies, Adeptix AI provides the expertise and resources you need to succeed in the AI revolution.
-                <br/><br/>
-                We are committed to pushing the boundaries of AI technology by continuously researching and developing new methodologies. Our team works closely with clients to understand their unique challenges, ensuring that our AI solutions are not only cutting-edge but also aligned with their business goals. At Adeptix AI, we believe in the transformative power of artificial intelligence to revolutionize industries and create a more intelligent future.
+    <!-- Hero Section -->
+    <header class="relative h-screen bg-hero-pattern bg-cover bg-center bg-fixed bg-no-repeat flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 text-shadow">
+                ENGINEERING <span class="text-cream-100">BETTER</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-stone-100 font-light leading-relaxed">
+                Practical, experienced, and proactive engineering teams who work with you, not against you.
             </p>
+            <div class="mt-10 animate-bounce">
+                <a href="#philosophy" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+                    <i data-lucide="chevron-down" class="w-10 h-10 mx-auto"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Philosophy Section (Three Columns) -->
+    <section id="philosophy" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <!-- Card 1 -->
+                <div class="group p-8 rounded-2xl hover:bg-stone-50 transition-colors duration-300">
+                    <div class="w-16 h-16 bg-cream-100 rounded-2xl mx-auto flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="pen-tool" class="text-stone-800 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-4">Better Designs</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        We love making things work better. It's why we do what we do. You get more of what you want, and less of what you don't.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group p-8 rounded-2xl hover:bg-stone-50 transition-colors duration-300">
+                    <div class="w-16 h-16 bg-cream-100 rounded-2xl mx-auto flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="users" class="text-stone-800 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-4">Better Teams</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        We believe better solutions are powered by people who love what they do. We're open, honest, and part of your team.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group p-8 rounded-2xl hover:bg-stone-50 transition-colors duration-300">
+                    <div class="w-16 h-16 bg-cream-100 rounded-2xl mx-auto flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="lightbulb" class="text-stone-800 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-4">Better Solutions</h3>
+                    <p class="text-stone-600 leading-relaxed">
+                        We are here to provide solutions, not problems. And great engineering always finds a way.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="content-middle section">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>
-                At Adeptix AI, we are committed to transforming businesses through advanced AI technologies. With a team of skilled AI experts, data scientists, and engineers, we deliver tailored AI solutions that are not only innovative but also practical and scalable. Our approach ensures that our clients stay ahead in an increasingly AI-driven world.
-                <br/><br/>
-                We are dedicated to solving complex business challenges through AI innovation. Our focus is on delivering AI solutions that are efficient, impactful, and tailored to the specific needs of each client. From automating routine tasks to providing deep insights through data analytics, our goal is to help businesses achieve new levels of success.
-                <br/><br/>
-            </p>
-        </div>
-    </section>
+    <!-- Sectors Section -->
+    <section id="sectors" class="py-24 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-stone-500 font-semibold tracking-wide uppercase">Our Expertise</h2>
+                <p class="mt-2 text-4xl font-extrabold text-stone-900">Sectors We Serve</p>
+            </div>
 
-    <section id="services" class="content-top section">
-        <div class="container">
-            <h2>Services</h2>
-            <p>
-                Adeptix AI offers a comprehensive suite of AI services designed to meet the unique needs of various industries. Our expertise spans across multiple AI domains, ensuring that our clients receive the most cutting-edge solutions.
-            </p>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="service-box">
-                        <h3>Software Development</h3>
-                        <p>We develop custom software solutions that leverage AI to optimize processes, enhance user experiences, and drive innovation. Our software development services are designed to integrate seamlessly with existing systems, providing businesses with powerful tools to remain competitive in the digital age.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sector Card 1 -->
+                <div class="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800" alt="Office" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="building" class="w-5 h-5 text-cream-100"></i> Offices
+                        </h3>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="service-box">
-                        <h3>AI Consultancy</h3>
-                        <p>We offer strategic AI consulting services to help businesses plan, implement, and scale AI solutions effectively. Our consultancy services are tailored to meet the specific needs of each client, providing expert guidance on AI adoption, technology selection, and project management, ensuring a smooth and successful AI transformation.</p>
+
+                <!-- Sector Card 2 -->
+                <div class="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800" alt="Hotel" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="bed" class="w-5 h-5 text-cream-100"></i> Hotels
+                        </h3>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="service-box">
-                        <h3>AI-Driven Data Analytics</h3>
-                        <p>Our advanced data analytics solutions help businesses unlock insights from vast datasets, enabling smarter, data-driven decisions. By applying machine learning algorithms and predictive modeling, we transform raw data into actionable intelligence, helping companies identify trends, optimize operations, and drive growth.</p>
+
+                <!-- Sector Card 3 -->
+                <div class="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" alt="Education" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-cream-100"></i> Education
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Sector Card 4 -->
+                <div class="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800" alt="Residential" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="home" class="w-5 h-5 text-cream-100"></i> Residential
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Sector Card 5 -->
+                <div class="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800" alt="Retail" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="shopping-bag" class="w-5 h-5 text-cream-100"></i> Retail
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Sector Card 6 -->
+                <div class="group relative overflow-hidden rounded-xl h-64 shadow-lg cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="Industrial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="text-white text-xl font-bold flex items-center gap-2">
+                            <i data-lucide="factory" class="w-5 h-5 text-cream-100"></i> Light Industrial
+                        </h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="content-middle section">
-        <div class="container">
-            <h2>Contact</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="company_address">
-                        <p>
-                            <h5><strong>Adeptix AI Limited</strong></h5>
-                            9 Stag Green Avenue<br>
-                            Hatfield<br>
-                            AL9 5EB<br>
-                            United Kingdom<br>
-                            <br><br>
-                            <strong>info@adeptixai.com</strong>
-                        </p>
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-stone-900">Leadership</h2>
+                <p class="mt-4 text-lg text-stone-500 max-w-2xl mx-auto">
+                    Leading from the front with hands-on engineering experience.
+                </p>
+            </div>
+
+            <div class="flex justify-center max-w-4xl mx-auto">
+                <!-- Team Member 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-cream-100 shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="Keyur Mistry" class="w-full h-full object-cover">
                     </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="contact-map" >
-                         <iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2468.99861530887!2d-0.21532082310849882!3d51.76963249151235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48763b5fcfee671d%3A0x13ad65874e3a0fd2!2s9%20Stag%20Green%20Ave%2C%20The%20Ryde%2C%20Hatfield%20AL9%205EB!5e0!3m2!1sen!2suk!4v1725440006305!5m2!1sen!2suk"></iframe>
-					</div>
+                    <h3 class="text-xl font-bold text-stone-900">Keyur Mistry</h3>
+                    <p class="text-cream-900 font-medium mb-2">Director</p>
+                    <p class="text-stone-500 text-sm leading-relaxed max-w-xs">
+                        Specializing in building service design with a focus on practical, high-value engineering solutions.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p class="text-center">© 2024 Adeptix AI Limited</p>
-            <a href="#home" id="toTop" class="scroll" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-stone-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-3xl font-extrabold mb-8">Get In Touch</h2>
+                    <p class="text-stone-400 mb-10 text-lg">
+                        Ready to start your next project? We're here to help you engineer better solutions.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-cream-100"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium">Head Office</h4>
+                                <p class="text-stone-400 mt-1">
+                                    The Engineering Hub, <br>
+                                    12 Innovation Drive, <br>
+                                    London, SW1A 1AA
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="phone" class="w-6 h-6 text-cream-100"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium">Phone</h4>
+                                <p class="text-stone-400 mt-1">+44 (0) 20 1234 5678</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i data-lucide="mail" class="w-6 h-6 text-cream-100"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-medium">Email</h4>
+                                <p class="text-stone-400 mt-1">hello@mistryassociates.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-stone-800 p-8 rounded-2xl shadow-2xl border border-stone-700">
+                    <form onsubmit="event.preventDefault(); alert('Thanks for your message! This is a demo form.');">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-stone-300 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-cream-100 focus:outline-none text-white placeholder-stone-400" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-stone-300 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-cream-100 focus:outline-none text-white placeholder-stone-400" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-stone-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-stone-700 border border-stone-600 rounded-lg focus:ring-2 focus:ring-cream-100 focus:outline-none text-white placeholder-stone-400" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-cream-100 text-stone-900 font-bold py-3 px-6 rounded-lg hover:bg-white transition-colors duration-200">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-stone-400 text-sm mb-4 md:mb-0">
+                &copy; 2025 Mistry and Associates Building Service Design. All rights reserved.
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-stone-500 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="text-stone-500 hover:text-white transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="text-stone-500 hover:text-white transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="scripts/scripts.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/98');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/98', 'bg-white/95');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu on click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
